@@ -3,5 +3,5 @@ from hello import app
 
 @app.route("/")
 def index():
-    return "hello,world"
+    return "你好，喵星在线！"
 
