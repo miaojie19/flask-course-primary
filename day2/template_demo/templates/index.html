@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        {% if title %}
-          <title>{{ title }} -模板的使用-喵星在线</title>
-        {% else %}
-          <title>模板的使用-喵星在线</title>
-        {% endif %}
-    </head>
-    <body>
-        <h1>Hello, {{ html_user.username }}!</h1>
+ <!--继承基模板-->
+{% extends "layout.html" %}
 
-        {% for post in html_posts %}     <!--for循环开始-->
-            <div>
-             <p>
-               {{ post.author.username }} says:<b>{{ post.content }}</b>
-             </p>
-            </div>
-        {% endfor %}                     <!-- for循环结束-->
-
-    </body>
-</html>
+ <!--重新填写block块的内容-->
+{% block content %}
+    <h1>Hi, {{ html_user.username }}!</h1>
+    {% for post in html_posts %}
+       <div>
+         <p>{{ post.author.username }} says: <b>{{ post.content }}</b></p>
+       </div>
+    {% endfor %}
+{% endblock %}

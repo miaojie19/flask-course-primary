@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      {% if title %}
+        <title>{{ title }} - 模板的使用-喵星在线</title>
+      {% else %}
+        <title>模板的使用-喵星在线</title>
+      {% endif %}
+    </head>
+    <body>
+       {% block content %}
+       {% endblock %}
+    </body>
+</html>
