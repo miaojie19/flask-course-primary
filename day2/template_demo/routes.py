@@ -1,16 +1,10 @@
-from template_demo import app
+from flask import render_template     # 从flask库中导入render_template对象
+from template_demo import app         # 从template_demo包中导入app实例
 
 
 @app.route('/')
 def index():
-    user = {'username':'猫姐'}                        # 建立一个user字典
-    return '''                                       # 返回HTML标记语言
-    <html>
-      <head>
-        <title>Home Page-模板的使用-喵星在线</title>
-      </head>
-      <body>
-        <h1>Hello,''' + user['username'] + '''!</h1>
-      </body>
-    </html>'''
+    user = {'username':'猫姐'}         # 建立一个user字典
+    return render_template('index.html', title='HomePage', html_user=user)
+
 
