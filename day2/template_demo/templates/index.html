@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>{{ title }}-模板的使用-喵星在线</title>
+        {% if title %}
+          <title>{{ title }} -模板的使用-喵星在线</title>
+        {% else %}
+          <title>模板的使用-喵星在线</title>
+        {% endif %}
    </head>
    <body>
       <h1>Hello,{{ html_user.username }}!</h1>

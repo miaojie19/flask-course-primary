@@ -5,6 +5,6 @@ from template_demo import app         # 从template_demo包中导入app实例
 @app.route('/')
 def index():
     user = {'username':'猫姐'}         # 建立一个user字典
-    return render_template('index.html', title='HomePage', html_user=user)
+    return render_template('index.html', html_user=user)
 
 
