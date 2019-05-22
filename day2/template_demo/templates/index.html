@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+    <head>
         {% if title %}
           <title>{{ title }} -模板的使用-喵星在线</title>
         {% else %}
           <title>模板的使用-喵星在线</title>
         {% endif %}
-   </head>
-   <body>
-      <h1>Hello,{{ html_user.username }}!</h1>
-   </body>
+    </head>
+    <body>
+        <h1>Hello, {{ html_user.username }}!</h1>
+
+        {% for post in html_posts %}     <!--for循环开始-->
+            <div>
+             <p>
+               {{ post.author.username }} says:<b>{{ post.content }}</b>
+             </p>
+            </div>
+        {% endfor %}                     <!-- for循环结束-->
+
+    </body>
 </html>
