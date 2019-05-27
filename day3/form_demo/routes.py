@@ -16,4 +16,7 @@ class LoginForm(FlaskForm):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
      form = LoginForm()
+     # 添加能够处理post请求
+     if form.validate_on_submit():
+          flash('登录用户 {},记住remember状态{}成功'.format(form.username.data, form.remember.data), 'success')
      return render_template('form.html', title='第三天', html_form=form)
