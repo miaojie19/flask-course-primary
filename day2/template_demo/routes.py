@@ -16,6 +16,6 @@ def index():
             'content': 'The flower is beautiful!'
         }
     ]
-    return render_template('index.html', title='Home', html_user=user, html_posts=posts)
+    return render_template('index.html', title='HomePage', html_user=user, html_posts=posts)
 
 
