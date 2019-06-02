@@ -7,4 +7,4 @@
 
 
 ### 扫码加入QQ群
-！[qq_group](./qq_qrcode.jpg)
+![qq_group](./qq_qrcode.jpg)
