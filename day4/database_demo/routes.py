@@ -1,3 +1,4 @@
+#!coding:utf8
 from database_demo import db
 
 
