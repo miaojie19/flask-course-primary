@@ -1,0 +1,29 @@
+<html>
+    <head>
+      {% if title %}
+        <title>{{ title }}-喵星在线</title>
+      {% else %}
+        <title>喵星在线</title>
+      {% endif %}
+    </head>
+    <header>
+        <div>
+            <a href="/">主页</a>
+            <a href="/login">登陆</a>
+        </div>
+    </header>
+    <body>
+    <!-- 渲染flash消息 -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+       {% block content %}
+       {% endblock %}
+    </body>
+</html>

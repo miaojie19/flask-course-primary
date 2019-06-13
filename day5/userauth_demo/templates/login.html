@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <form action="" method="post">
+            <!--防跨站伪造请求-->
+            {{html_form.hidden_tag() }}
+        <div>
+            <!--显示Email标签名称-->
+            {{ html_form.email.label }}<br />
+            <!--Username输入框-->
+            {{ html_form.email() }}
+        </div>
+         <div>
+            <!--显示Password标签名称-->
+            {{ html_form.password.label }}<br />
+            <!--密码输入框-->
+            {{ html_form.password() }}
+        </div>
+        <div>
+            <!--显示Remember Me标称名称-->
+            {{ html_form.remember.label }}
+            <!--是否勾选记住密码框-->
+            {{ html_form.remember() }}
+        </div>
+        <div>
+            <!--显示提交按钮-->
+            {{ html_form.submit() }}
+        </div>
+    </form>
+    <p>
+       Need An Account? <a  href="{{ url_for('register')}}">Sign up</a>
+    </p>
+
+
+{% endblock content %}

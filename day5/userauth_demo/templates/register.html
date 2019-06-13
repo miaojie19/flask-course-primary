@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Sign Up</h1>
+    <form action="" method="post">
+            <!--防跨站伪造请求-->
+            {{html_form.hidden_tag() }}
+        <div>
+            {{ html_form.username.label }}<br />
+            {{ html_form.username() }}
+            {% if html_form.username.errors %}
+                <div >
+                    {% for error in html_form.username.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ html_form.email.label }}<br />
+            {{ html_form.email() }}
+            {% if html_form.email.errors %}
+                <div >
+                    {% for error in html_form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ html_form.password.label }}<br />
+            {{ html_form.password() }}
+        </div>
+        <div>
+            {{ html_form.confirm_password.label }}<br />
+            {{ html_form.confirm_password() }}
+        </div>
+        <div>
+            {{ html_form.submit() }}
+        </div>
+    </form>
+    <p>
+        Already Have An Account? <a  href="{{ url_for('login')}}">Sign in</a>
+    </p>
+{% endblock content %}
