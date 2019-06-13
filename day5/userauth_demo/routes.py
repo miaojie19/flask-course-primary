@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash
 from userauth_demo import app
 # 从userauth_demo.forms中导入LoginForm类
 from userauth_demo.forms import LoginForm
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, login_required, logout_user
 from userauth_demo.models import User
 from userauth_demo.forms import registerForm
 from userauth_demo import db, bcrypt
@@ -11,6 +11,7 @@ from userauth_demo import db, bcrypt
 
 # 添加视图函数渲染主页内容
 @app.route('/')
+@login_required
 def index():
     return render_template('index.html', title='第五天')
 
@@ -19,15 +20,15 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('/'))
+        return redirect(url_for('index'))
     # 对类LoginForm的实例
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == '424277539@qq.com' and form.password.data == 'miaojie':
-            flash('Login Unsuccessful.', 'success')
-            return redirect(url_for('index'))
-
-    # 将视图函数中的变量form传到模板login.html文件中去
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='第五天', html_form=form)
 
 
@@ -44,6 +45,12 @@ def register():
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title="第五天", html_form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 
