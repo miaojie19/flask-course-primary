@@ -1,5 +1,5 @@
 #!coding:utf8
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from userauth_demo import app
 # 从userauth_demo.forms中导入LoginForm类
 from userauth_demo.forms import LoginForm
@@ -27,6 +27,12 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
+            nextpage = request.args.get('next')
+            if nextpage:
+                return redirect(nextpage)
+            else:
+                url = url_for('index')
+                return redirect(url)
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='第五天', html_form=form)
