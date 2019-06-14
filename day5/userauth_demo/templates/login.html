@@ -10,6 +10,13 @@
             {{ html_form.email.label }}<br />
             <!--Username输入框-->
             {{ html_form.email() }}
+            {% if html_form.email.errors %}
+		        <div >
+		             {% for error in html_form.email.errors %}
+		                 <span>{{ error }}</span>
+                     {% endfor %}
+		        </div>
+	        {% endif %}
         </div>
          <div>
             <!--显示Password标签名称-->
