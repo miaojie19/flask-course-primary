@@ -48,7 +48,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('该用户名已注册，请登陆！', 'success')
+        flash('注册成功，请登陆！', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title="第五天", html_form=form)
 
