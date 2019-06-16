@@ -11,7 +11,7 @@ from userauth_demo import db, bcrypt
 
 # 添加视图函数渲染主页内容
 @app.route('/')
-
+@login_required
 def index():
     return render_template('index.html', title='第五天')
 
@@ -24,21 +24,17 @@ def login():
     # 对类LoginForm的实例
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == '424277539@qq.com' and form.password.data == 'miaojie':
-            flash('你已经登陆成功', 'success')  # flash消息的渲染
-            return redirect(url_for('index'))
-            # if form.validate_on_submit():
-    #     user = User.query.filter_by(email=form.email.data).first()
-    #     if user and bcrypt.check_password_hash(user.password, form.password.data):
-    #         login_user(user, remember=form.remember.data)
-    #         nextpage = request.args.get('next')
-    #         if nextpage:
-    #             return redirect(nextpage)
-    #         else:
-    #             url = url_for('index')
-    #             return redirect(url)
-    #     else:
-    #         flash('Login Unsuccessful. Please check email and password', 'danger')
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            nextpage = request.args.get('next')
+            if nextpage:
+                return redirect(nextpage)
+            else:
+                url = url_for('index')
+                return redirect(url)
+        else:
+            flash('登陆不成功，请检查邮箱和密码！', 'danger')
     return render_template('login.html', title='第五天', html_form=form)
 
 
@@ -57,10 +53,10 @@ def register():
     return render_template('register.html', title="第五天", html_form=form)
 
 
-# @app.route('/logout')
-# def logout():
-#     logout_user()
-#     return redirect(url_for('index'))
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 
