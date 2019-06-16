@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h2>登陆</h2>
     <form action="" method="post">
             <!--防跨站伪造请求-->
             {{html_form.hidden_tag() }}
@@ -36,7 +36,7 @@
         </div>
     </form>
     <p>
-       Need An Account? <a  href="{{ url_for('register')}}">Sign up</a>
+       没有账号? <a  href="{{ url_for('register')}}">注册</a>
     </p>
 
 
