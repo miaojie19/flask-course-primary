@@ -7,6 +7,10 @@
 
 ### [第四天：在Flask应用中使用数据库—Flask_SQLAlchemy](http://www.catonlinepy.tech/post/22)
 
+### [第五天上篇：在Flask应用中使用用户认证—Flask_Login](http://www.catonlinepy.tech/post/23)
+
+### [第五天下篇：在Flask应用中使用用户认证—Flask_Login](http://www.catonlinepy.tech/post/24)
+
 ### [喵星在线-Flask博客上线布署过程](http://www.catonlinepy.tech/post/19)
 
 ## 2. 扫码加入QQ群
