@@ -35,12 +35,10 @@ def account():
         username = form.username.data
         email = form.email.data
         if form.profile_image.data:
-            print("post请求")
             picture_file = save_user_face_image(form.profile_image.data)
             current_user.profile_image = picture_file
         current_user.username = username
         current_user.email = email
-        # db.session.add(current_user)
         db.session.commit()
         return redirect(url_for("account"))
     form.email.data = current_user.email
