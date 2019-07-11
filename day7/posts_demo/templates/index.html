@@ -1,0 +1,36 @@
+ <!--继承基模板-->
+{% extends "layout.html" %}
+
+ <!--重新填写block块的内容-->
+{% block content %}
+    <div style="width:50%">
+        <ul style="list-style-type:none;">
+            {% for post in html_post %}
+            <li>
+                <div>
+                    <h2>
+                        <a href="{{ url_for('show_post',post_id=post.id) }}" style="text-decoration:none;"> {{ post.title }} </a>
+                    </h2>
+                    <div>
+                        <p>{{ post.content |safe }}</p>
+                    </div>
+                </div>
+
+                <div>
+                <a  target="_blank" href="{{ url_for('show_post',post_id=post.id) }}" >
+                    <img alt="" style="border-radius:50%;" src="{{ url_for('static',filename='profile/'+post.author.profile_image) }}"  width="30" height="30">
+                </a>
+                <a  href="{{url_for('show_user_post',username = post.author.username)}}" target="_blank" style="text-decoration:none;">
+                    {{ post.author.username }}
+                </a>
+                <span style="position:relative;left:50%;">
+                        更新于 {{ post.update_datetime.strftime('%Y-%m-%d') }}
+                </span>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

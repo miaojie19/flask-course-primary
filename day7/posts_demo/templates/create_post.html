@@ -1,0 +1,37 @@
+ <!--继承基模板-->
+{% extends "layout.html" %}
+
+{% block content %}
+ <div>
+    <form action="{{ url_for('create_post') }}" method="post" enctype="multipart/form-data">
+            <!--防跨站伪造请求-->
+            {{html_form.hidden_tag() }}
+        <div>
+            {{ html_form.title.label(class="form-control-label") }}<br />
+            {{ html_form.title(class="form-control form-control-lg") }}
+            {% if html_form.title.errors %}
+                <div >
+                    {% for error in html_form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ html_form.content.label(class="form-control-label") }}<br />
+            {{ html_form.content(class="form-control form-control-lg") }}
+            {% if html_form.content.errors %}
+                <div >
+                    {% for error in html_form.content.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            {{ html_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+ </div>
+{% endblock content %}
+

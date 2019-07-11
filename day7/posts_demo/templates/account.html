@@ -1,0 +1,33 @@
+ <!--继承基模板-->
+{% extends "layout.html" %}
+
+{% block content %}
+ <hr>
+ <div>
+    <h1>用户：{{html_user.username}}</h1>
+    <img alt="" style="border-radius: 50%;" src='{{url_for("static", filename = html_user_image)}}' width="60" height="60">
+ </div>
+<hr>
+ <div>
+    <form method="POST" action="{{ url_for('account') }}" enctype="multipart/form-data">
+        {{ html_form.hidden_tag() }}
+        <fieldset>
+            <div class="form-group">
+                {{ html_form.username.label(class="form-control-label") }} <br>
+                {{ html_form.username(class="form-control form-control-lg"  ) }}
+            </div>
+            <div class="form-group">
+                {{ html_form.email.label(class="form-control-label") }} <br>
+                {{ html_form.email(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ html_form.profile_image.label() }} <br>
+                {{ html_form.profile_image(class="form-control-file", onchange="readURL(this)") }}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ html_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+ </div>
+{% endblock %}
